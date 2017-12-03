@@ -1,0 +1,66 @@
+{
+  "version" : 13,
+  "root" : {
+    "id" : "Y]IcQ[hh",
+    "__class" : "CanvasNode",
+    "parentid" : null,
+    "children" : [
+      {
+        "id" : "l7xA:Jj`",
+        "__class" : "FrameNode",
+        "x" : 475,
+        "parentid" : "Y]IcQ[hh",
+        "exportOptions" : [
+
+        ],
+        "width" : 375,
+        "y" : 0,
+        "exportIncludesBackground" : true,
+        "deviceType" : "apple-iphone-8-space-gray",
+        "fillGradient" : {
+          "end" : "#3BDFD2",
+          "alpha" : 1,
+          "angle" : 0,
+          "__class" : "LinearGradient",
+          "start" : "#05745F"
+        },
+        "children" : [
+
+        ],
+        "height" : 667,
+        "fillType" : "gradient",
+        "targetName" : null,
+        "fillColor" : "#99CC66",
+        "name" : "Screen2"
+      },
+      {
+        "id" : "Zm`J2=K$",
+        "__class" : "FrameNode",
+        "x" : 0,
+        "parentid" : "Y]IcQ[hh",
+        "exportOptions" : [
+
+        ],
+        "width" : 375,
+        "y" : 0,
+        "exportIncludesBackground" : true,
+        "deviceType" : "apple-iphone-8-space-gray",
+        "fillGradient" : {
+          "end" : "#3BDFD2",
+          "alpha" : 1,
+          "angle" : 0,
+          "__class" : "LinearGradient",
+          "start" : "#05745F"
+        },
+        "children" : [
+
+        ],
+        "height" : 667,
+        "fillType" : "gradient",
+        "targetName" : "Screen1",
+        "fillColor" : "#99CC66",
+        "name" : "Screen1"
+      }
+    ]
+  }
+}
