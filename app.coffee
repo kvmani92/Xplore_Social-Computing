@@ -7,7 +7,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia3ZtYW5pOTIiLCJhIjoiY2o5dDM3NW44NmtwMzJ5bGdqa
 # accZ = 0
 # window.addEventListener 'deviceorientation', (event) ->
 #   #accX = event.accelerationIncludingGravity.x
-#   accZ = event.alpha  
+#   accZ = event.alpha
 #  # print accZ*100
 #   Dest_arrow.rotation = -90+accZ;
 #   return
@@ -18,32 +18,33 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia3ZtYW5pOTIiLCJhIjoiY2o5dDM3NW44NmtwMzJ5bGdqa
 # Variables
 pageCount = 3
 gutter = 10
+layerBackgroundColor = "#00AAFF"
 
 # Create PageComponent
 
 
-	
+
 pageScroller = new PageComponent
 	point: Align.center
-	width: Screen.width 
-	height: Screen.height 
+	width: Screen.width
+	height: Screen.height
 	scrollVertical: true
 	scrollHorizontal: false
 	clip: false
 	draggable: false
-# 
+#
 # pageScroller2 = new PageComponent
 # 	point: Align.center
-# 	width: Screen.width 
-# 	height: Screen.height 
+# 	width: Screen.width
+# 	height: Screen.height
 # 	scrollVertical: false
 # 	clip: false
 # 	draggable: false
 # 	parent: pageScroller.content
-# 
+#
 # pageScroller.snapToPage(mapLayer)
-# 
-# 	
+#
+#
 # Loop to create pages
 for index in [0...2]
 	#print index
@@ -51,10 +52,10 @@ for index in [0...2]
 		size: pageScroller.size
 		name: "layer"+index
 		x: (pageScroller.width + gutter) * index
-		backgroundColor: "#00AAFF"
+		backgroundColor: layerBackgroundColor
 		hueRotate: index * 20
 		parent: pageScroller.content
-# 
+#
 
 #print pageScroller.content.children[0].content.children
 # pageScroller.onClick ->
@@ -72,7 +73,7 @@ mapLayer = new Layer
 	index: 2
 	propagateEvents: false
 	parent: pageScroller.content
-	
+
 
 mapLayer.classList.add('map-one')
 
@@ -87,7 +88,7 @@ randomFn = ( ex ) ->
 getLocation = ->
   if navigator.geolocation
     #print 'yes'
-    #print navigator.geolocation.getCurrentPosition 
+    #print navigator.geolocation.getCurrentPosition
     navigator.geolocation.getCurrentPosition showPosition, randomFn
   else
     #print 'Geolocation is not supported by this browser.'
@@ -106,7 +107,7 @@ showPosition = (position) ->
     zoom: 18
     minZoom: 5
     maxZoom: 22
-    
+
     #center: [-77.01866, 38.888]
     center: [long,lat]
     pitch: 45
@@ -120,7 +121,7 @@ showPosition = (position) ->
   markerImg.style.height = "100px"
   markerImg.src = 'http://www.pngall.com/wp-content/uploads/2017/05/Map-Marker-PNG-HD.png'
 
-  
+
   marker.className = "location-tracker"
   marker.id = "location-tracker"
   marker.style.backgroundImage = 'url(framer/images/marker.svg)';
@@ -128,7 +129,7 @@ showPosition = (position) ->
   new mapboxgl.Marker markerImg
   .setLngLat [long,lat]
   .addTo map
-  
+
   markerImg.addEventListener 'click', ->
     print 'Tapped'
     console.log 'Tapped'
@@ -139,16 +140,16 @@ showPosition = (position) ->
     return
   getLocation()
 
-  
-  
-  
-  
+
+
+
+
 
 
 
 
 mapLayer.ignoreEvents = false
-#print 
+#print
 
 
 
@@ -156,7 +157,6 @@ mapLayer.ignoreEvents = false
 
 #print navigator.geolocation.getCurrentPosition
 
-  
 
 
 
@@ -169,3 +169,38 @@ mapLayer.ignoreEvents = false
 
 
 
+
+# Navdeep's section @start
+
+# This function returns a fresh new layer:
+_baseLayer = new Layer
+  name: "Super Layer"
+  x: 0
+  y: 0
+  width: Screen.width
+  height: Screen.height
+  scrollVertical: true
+  scrollHorizontal: false
+
+getNewLayer = ( name ) ->
+  new Layer
+    name: name
+    backgroundColor: layerBackgroundColor
+    opacity: 0
+    parent: pageScroller.content
+    # parent: _baseLayer
+
+# Create first layer:
+layer1AddExperience = getNewLayer "addXp"
+# layer1AddExperience.opacity = 1
+layer1AddExperience.bringToFront()
+layer1AddExperience.html = ( $.tmpl "add-xp" ).prop( "outerHTML" )
+$addXpForm = layer1AddExperience.querySelector "form#add-xp"
+$addXpForm.on "click", ( e ) ->
+  e.preventDefault()
+  $form = $ this
+  print "Submit!"
+  print ( $form.find "input#xp-name" ).val()
+  print ( $form.find "select#xp-category" ).val()
+
+# Navdeep's section @end
